@@ -1,0 +1,48 @@
+name: Hyperion
+version: '1.0.0'
+slug: hyperion
+description:
+  Hyperion is an open source (MIT) Bias or Ambient Lighting implementation for
+  GNU/Linux, macOS and Windows, which you might know from TV manufacturers. It
+  supports many LED devices and video grabbers. In simple words, this software
+  dynamically processes input video signal (using for example current video
+  framebuffer), and converts it into signal to steer ambient light (using for
+  example LED strips controlled over USB device).
+arch:
+  - armv7
+  - aarch64
+  - amd64
+url: 'https://github.com/kanso-org/hassio-addons/tree/main/hyperion'
+webui: 'http://[HOST]:[PORT:8090]'
+ports:
+  8090/tcp: 8090
+  8092/tcp: 8092
+  19333/tcp: 19333
+  19400/tcp: 19400
+  19444/tcp: 19444
+  19445/tcp: 19445
+ports_description:
+  8090/tcp: Web Admin
+  8092/tcp: SSL Web Admin
+  19333/tcp: Boblight Server
+  19400/tcp: Google Flatbuffers Receiver
+  19444/tcp: JSON-RPC Remote Control
+  19445/tcp: Protocol Buffers Server
+devices:
+  - /dev/spidev0.0
+  - /dev/vchiq
+  - /dev/amvideo
+  - /dev/fb0
+  - /dev/mem
+privileged:
+  - SYS_ADMIN
+  - SYS_RAWIO
+map:
+  - addon_config:rw
+init: false
+audio: true
+video: true
+gpio: true
+usb: true
+uart: true
+image: 'ghcr.io/kanso-org/{arch}-addon-hyperion'
