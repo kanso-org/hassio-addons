@@ -1,0 +1,35 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "customManagers": [
+    {
+      "customType": "regex",
+      "datasourceTemplate": "docker",
+      "fileMatch": ["build.yaml$"],
+      "matchStrings": [
+        "(?:aarch64|amd64|armhf|armv7|i386):\\s*'(?<depName>ghcr\\.io\\/home-assistant\\/[^:]+):(?<currentValue>[^']+)'"
+      ]
+    }
+  ],
+  "extends": ["config:recommended"],
+  "minimumReleaseAge": null,
+  "mise": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "automerge": true,
+      "matchUpdateTypes": ["patch"]
+    },
+    {
+      "groupName": "Home Assistant Base Images",
+      "matchPackageNames": ["ghcr.io/home-assistant/**"]
+    }
+  ],
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "rebaseWhen": "behind-base-branch",
+  "recreateWhen": "always",
+  "vulnerabilityAlerts": {
+    "enabled": false
+  }
+}
