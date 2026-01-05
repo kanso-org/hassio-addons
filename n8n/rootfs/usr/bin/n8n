@@ -1,7 +1,0 @@
-#!/usr/bin/with-contenv bashio
-
-export N8N_PATH=$(bashio::addon.ingress_url)
-export N8N_RUNNERS_ENABLED=$(bashio::config 'enable_task_runners')
-export N8N_SECURE_COOKIE=$(bashio::config 'enable_ssl')
-
-n8n start

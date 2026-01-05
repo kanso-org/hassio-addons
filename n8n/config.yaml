@@ -12,7 +12,7 @@ arch:
 url: 'https://github.com/kanso-org/hassio-addons/tree/main/n8n'
 map:
   - type: addon_config
-    path: /home/node/.n8n
+    path: /data
     read_only: false
   - type: share
     read_only: false

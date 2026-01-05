@@ -1,3 +1,18 @@
 #!/usr/bin/with-contenv bashio
 
-exec /usr/bin/n8n
+# Expose n8n locally
+export N8N_PORT=5678
+export N8N_HOST=0.0.0.0
+
+# Ensure data persistence
+export N8N_USER_FOLDER=/data
+
+# Setup integration with Home Assistant
+export N8N_EDITOR_BASE_URL=$(bashio::addon.ingress_url)
+export N8N_RUNNERS_ENABLED=$(bashio::config 'enable_task_runners')
+export N8N_SECURE_COOKIE=$(bashio::config 'enable_ssl')
+
+# Start n8n
+cd /usr/src/n8n
+export PATH="/root/.local/share/mise/shims:$PATH"
+exec ./node_modules/.bin/n8n start
