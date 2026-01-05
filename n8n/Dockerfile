@@ -3,16 +3,17 @@ ARG BUILD_FROM
 FROM $BUILD_FROM
 
 # Install requirements for add-on
-RUN apk add --no-cache \
-  bash \
-  curl \
-  g++ \
-  git \
-  graphicsmagick \
-  linux-headers \
-  make \
-  openssh \
-  python3
+RUN apt-get update && apt-get install --assume-yes --no-install-recommends \
+    bash \
+    curl \
+    g++ \
+    git \
+    graphicsmagick \
+    linux-libc-dev \
+    make \
+    openssh-client \
+    python3 \
+  && rm -rf /var/lib/apt/lists/*
 
 # Install mise
 RUN curl https://mise.run | sh
