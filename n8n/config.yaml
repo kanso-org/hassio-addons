@@ -11,18 +11,19 @@ arch:
   - amd64
 url: 'https://github.com/kanso-org/hassio-addons/tree/main/n8n'
 map:
-  - type: addon_config
-    path: /data
-    read_only: false
   - type: share
     read_only: false
 init: false
 options:
   enable_task_runners: false
   enable_ssl: false
+  log_level: info
+  node_function_external_modules: []
 schema:
   enable_task_runners: bool
   enable_ssl: bool
+  log_level: list(debug|info|warn|error)
+  node_function_external_modules: [str]
 image: 'ghcr.io/kanso-org/{arch}-addon-n8n'
 ingress: true
 ingress_port: 5678
