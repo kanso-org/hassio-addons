@@ -4,7 +4,7 @@
     {
       "customType": "regex",
       "datasourceTemplate": "docker",
-      "fileMatch": ["build.yaml$"],
+      "managerFilePatterns": ["/build.yaml$/"],
       "matchStrings": [
         "(?:aarch64|amd64|armhf|armv7|i386):\\s*'(?<depName>ghcr\\.io\\/home-assistant\\/[^:]+):(?<currentValue>[^']+)'"
       ]
